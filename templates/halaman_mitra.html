@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profil Mitra</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #90caf9, #42a5f5);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    nav.navbar {
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .info-container {
+      background: #fff;
+      border-radius: 15px;
+      padding: 40px 50px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      margin-top: 40px;
+      transition: transform 0.3s ease;
+    }
+    .info-container:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    }
+    .info-label {
+      font-weight: 700;
+      color: #1565c0;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .info-label i {
+      color: #1976d2;
+      font-size: 1.3rem;
+    }
+    p {
+      font-size: 1.15rem;
+      color: #424242;
+      margin-bottom: 20px;
+      word-wrap: break-word;
+    }
+    h3 {
+      font-weight: 700;
+      color: #0d47a1;
+      margin-bottom: 35px;
+      text-shadow: 1px 1px 2px rgba(21, 101, 192, 0.6);
+    }
+    .btn-extra {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .btn {
+      padding: 12px 25px;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 10px rgba(25, 118, 210, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn.btn-success {
+      background: linear-gradient(45deg, #43a047, #66bb6a);
+      border: none;
+    }
+    .btn.btn-primary {
+      background: linear-gradient(45deg, #1e88e5, #42a5f5);
+      border: none;
+    }
+    .btn:hover {
+      filter: brightness(1.1);
+      box-shadow: 0 6px 20px rgba(25, 118, 210, 0.5);
+      transform: translateY(-3px);
+    }
+    .text-center p {
+      font-style: italic;
+      color: #b71c1c;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-light" style="background-color: #1976d2;">
+    <div class="container">
+      <span class="navbar-brand mb-0 h1 text-white"><i class="bi bi-person-badge-fill me-2"></i>Profil Mitra</span>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 info-container">
+        <h3 class="text-center">Data Mitra</h3>
+
+        <div>
+          <span class="info-label"><i class="bi bi-building"></i> Nama Klinik / Toko Obat:</span>
+          <p>{{ mitra.nama_klinik }}</p>
+        </div>
+
+        <div>
+          <span class="info-label"><i class="bi bi-envelope-fill"></i> Email:</span>
+          <p>{{ mitra.email }}</p>
+        </div>
+
+        <div>
+          <span class="info-label"><i class="bi bi-person-lines-fill"></i> Jenis Mitra:</span>
+          <p>{{ mitra.jenis_mitra }}</p>
+        </div>
+
+        <div>
+          <span class="info-label"><i class="bi bi-geo-alt-fill"></i> Alamat Lengkap:</span>
+          <p>{{ mitra.alamat }}</p>
+        </div>
+
+        <div>
+          <span class="info-label"><i class="bi bi-telephone-fill"></i> No. Telepon (WA):</span>
+          <p>{{ mitra.no_telepon }}</p>
+        </div>
+
+        <div>
+          <span class="info-label"><i class="bi bi-file-earmark-check-fill"></i> Nomor Izin Operasional:</span>
+          <p>{{ mitra.no_izin_operasional }}</p>
+        </div>
+
+        <div class="text-center btn-extra">
+          {% if mitra.jenis_mitra.lower() == 'klinik' %}
+            <a href="{{ url_for('tambah_dokter', username=mitra.user_name) }}" class="btn btn-primary">
+              <i class="bi bi-person-plus-fill"></i> Tambah Dokter
+            </a>
+          {% elif mitra.jenis_mitra.lower() == 'apotek' %}
+            <a href="{{ url_for('tambah_obat', username=mitra.user_name) }}" class="btn btn-success">
+              <i class="bi bi-plus-circle"></i> Tambah Obat
+            </a>
+          {% else %}
+            <p>Jenis mitra tidak dikenali.</p>
+          {% endif %}
+        </div>
+        <div class="text-center btn-extra">
+          {% if mitra.jenis_mitra.lower() == 'klinik' %}
+            <a href="{{ url_for('daftar_dokter', username=mitra.user_name) }}" class="btn btn-primary">
+              <i class="bi bi-person-plus-fill"></i> Daftar Dokter
+            </a>
+          {% elif mitra.jenis_mitra.lower() == 'apotek' %}
+            <a href="{{ url_for('daftar_obat', username=mitra.user_name) }}" class="btn btn-success">
+              <i class="bi bi-plus-circle"></i> Daftar Obat
+            </a>
+          {% else %}
+            <p>Jenis mitra tidak dikenali.</p>
+          {% endif %}
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

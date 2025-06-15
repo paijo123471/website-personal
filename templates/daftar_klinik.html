@@ -1,0 +1,11 @@
+{% for klinik in daftar_klinik %}
+<tr>
+  <td>{{ klinik.nama_klinik }}</td>
+  <td>{{ klinik.alamat }}</td>
+  <td>
+    <a href="{{ url_for('detail_klinik', user_name=klinik.user_name) }}" class="btn btn-info btn-sm">
+        Detail
+    </a>
+  </td>
+</tr>
+{% endfor %}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <title>Request OTP</title>
+    <style>
+        body {
+            background-color: #e6f0ff; /* biru muda lembut */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #003366;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 700;
+            color: #004080;
+        }
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 6px;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px 12px;
+            font-size: 16px;
+            border: 2px solid #99bbff;
+            border-radius: 6px;
+            outline-color: #4d94ff;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #3366ff;
+            box-shadow: 0 0 8px #3366ff66;
+        }
+        button {
+            width: 100%;
+            background-color: #3366ff;
+            color: white;
+            padding: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #254eda;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Masukkan Username, Password, dan Nomor WhatsApp</h1>
+        <form method="post" action="/send_otp">
+            <label>Username:</label>
+            <input type="text" name="username" required>
+
+            <label>Password:</label>
+            <input type="password" name="password" required>
+
+            <label>Nomor WhatsApp (format: whatsapp:+62xxx):</label>
+            <input type="text" name="phone" placeholder="whatsapp:+62xxxxxxxxxxx" required>
+
+            <button type="submit">Kirim OTP</button>
+        </form>
+    </div>
+</body>
+</html>

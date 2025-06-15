@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Login User - MedisGo{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 85vh;">
+  <div class="card shadow-lg p-4" style="width: 100%; max-width: 420px;">
+    <div class="text-center mb-4">
+      <h3 class="fw-bold text-primary">Login Pengguna</h3>
+      <p class="text-muted mb-0">Silakan masuk untuk melanjutkan</p>
+    </div>
+    <form method="POST" action="/login_user">
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control border-primary" id="username" name="username" required>
+      </div>
+      <div class="mb-4">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control border-primary" id="password" name="password" required>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Masuk</button>
+    </form>
+    <div class="mt-3 text-center">
+      <small>Belum punya akun? <a href="{{ url_for('register') }}" class="text-decoration-none text-primary fw-semibold">Daftar di sini</a></small>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tambah Obat</title>
+
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Custom Style -->
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .card {
+      border: none;
+    }
+    .form-control:focus {
+      box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+    }
+    .btn-success {
+      background-color: #198754;
+    }
+    .btn-success:hover {
+      background-color: #157347;
+    }
+    .btn-secondary {
+      background-color: #6c757d;
+    }
+    .btn-secondary:hover {
+      background-color: #5c636a;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card shadow-lg rounded-4">
+          <div class="card-body p-4">
+            <h3 class="card-title text-center mb-4 text-primary fw-bold">Tambah Obat</h3>
+
+            <!-- Form tambah obat -->
+            <form method="POST" action="{{ url_for('tambah_obat') }}" enctype="multipart/form-data">
+              <input type="hidden" name="username" value="{{ username }}">
+
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Nama Obat</label>
+                <input type="text" class="form-control rounded-3 border-primary-subtle" name="nama_obat" required placeholder="Masukkan nama obat">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Keterangan</label>
+                <textarea class="form-control rounded-3 border-primary-subtle" name="keterangan" rows="3" required placeholder="Deskripsi obat"></textarea>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Harga (Rp)</label>
+                <input type="number" class="form-control rounded-3 border-primary-subtle" name="harga" required placeholder="Harga obat">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Foto Obat</label>
+                <input type="file" class="form-control rounded-3 border-primary-subtle" name="foto" accept="image/*" required>
+              </div>
+
+              <div class="d-grid gap-2 mt-4">
+                <button type="submit" class="btn btn-success fw-semibold rounded-3">Simpan</button>
+                <a href="{{ url_for('halaman_mitra', username=username) }}" class="btn btn-secondary rounded-3">Batal</a>
+              </div>
+            </form>
+            <!-- End form -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
