@@ -1,5 +1,7 @@
 from flask import Flask, request, render_template, redirect, url_for, jsonify, session
 from twilio.rest import Client
+from flask import render_template_string
+
 
 import random
 import mysql.connector
@@ -20,7 +22,13 @@ otp_mitra_storage = {}
 
 @app.route('/')
 def home():
-    return render_template('landing.html')
+    try:
+        with open("landing.html", "r", encoding="utf-8") as file:
+            content = file.read()
+        return render_template_string(content)
+    except Exception as e:
+        return f"Error loading landing.html: {str(e)}", 500
+
 
 @app.route('/login_user', methods=['GET', 'POST'])
 def login_user():
