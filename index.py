@@ -20,14 +20,15 @@ client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 otp_storage = {}
 otp_mitra_storage = {}
 
+
 @app.route('/')
 def home():
     try:
-        with open("landing.html", "r", encoding="utf-8") as file:
+        with open("index.html", "r", encoding="utf-8") as file:
             content = file.read()
         return render_template_string(content)
     except Exception as e:
-        return f"Error loading landing.html: {str(e)}", 500
+        return f"Error loading index.html: {str(e)}", 500
 
 
 @app.route('/login_user', methods=['GET', 'POST'])
